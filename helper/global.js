@@ -13,3 +13,8 @@ export const imageRender = (name, type) => {
 
   return result
 }
+
+export const convertNameToBeSlug = (name) => {
+  let slug = name.split(' ').join('-')
+  return slug.toLowerCase()
+}

@@ -1,12 +1,13 @@
 import React from 'react'
 import classes from './Image.module.scss'
 import { shoes } from '../../../../content/shoes'
+import { imageRender } from '../../../../helper/global'
 
 export default function Image(props) {
   return (
     <React.Fragment>
       <div className={classes.Image}>
-        <img src={shoes[0].image} alt="sss" />
+        <img src={imageRender(props.name, 'src')} alt="sss" />
       </div>
       <div className={classes.ImageNavigation}>
         <ul>

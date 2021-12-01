@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './Detail.module.scss'
 import { useRouter } from 'next/router'
 import Icon from '../../components/UI/Icon'
@@ -6,24 +6,133 @@ import Image from '../../components/Product/Detail/Image/Image'
 import Size from '../../components/Product/Detail/Size/Size'
 import Color from '../../components/Product/Detail/Color/Color'
 import VideoPlayer from '../../components/Product/Detail/VideoPlayer/VideoPlayer'
+import * as productAction from '../../redux/product/ProductAction'
+import { connect } from 'react-redux'
+import ContentLoader from 'react-content-loader'
 
-export default function Detail() {
+function Detail(props) {
   const router = useRouter()
+  const slug = router.query.slug
+  const [activeVideoUrl, setActiveVideoUrl] = useState(null)
+  const [activeSize, setActiveSize] = useState(null)
+  const [activeColor, setActiveColor] = useState(null)
+  const [activeHashColor, setActiveHashColor] = useState(null)
+  const [activeImage, setActiveImage] = useState(null)
+
+  useEffect(() => {
+    props.onInitProducts()
+  }, [])
+
+  useEffect(() => {
+    if (props.products && slug) {
+      props.onInitProductDetail(slug)
+    }
+  }, [props.products, slug])
+
+  useEffect(() => {
+    if (props.productDetail) {
+      setActiveColor(props.productDetail?.colors[0]?.name)
+      setActiveHashColor(props.productDetail?.colors[0]?.color_hash)
+      setActiveSize(props.productDetail?.sizes[0])
+    }
+  }, [props.productDetail])
+
+  const setColorHandler = (name, hash) => {
+    setActiveColor(name)
+    setActiveHashColor(hash)
+  }
+
+  let image = null
+  let details = null
+  let videoPlayer = null
+  let size = null
+  let color = null
+  if (props.productDetail) {
+    image = <Image name={props.productDetail?.name} />
+    details = (
+      <React.Fragment>
+        <div className={classes.Category}>{props?.productDetail?.category}</div>
+        <div className={classes.Title}>{props?.productDetail?.name}</div>
+        <div className={classes.Description}>{props?.productDetail?.description}</div>
+      </React.Fragment>
+    )
+    videoPlayer = <VideoPlayer url={props.productDetail?.video} />
+    size = (
+      <Size
+        sizes={props.productDetail?.sizes}
+        activeSize={activeSize}
+        clickedToSetActiveSize={(val) => setActiveSize(val)}/>
+    )
+    color = (
+      <Color
+        colors={props.productDetail?.colors}
+        activeColor={activeHashColor}
+        clickedToSetActiveColor={(name, hash) => setColorHandler(name, hash)} />
+    )
+  } else {
+    details = (
+      <ContentLoader
+        speed={0}
+        width="100%"
+        height={200}
+        viewBox="0 0 100% 200"
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="0" y="20" rx="0" ry="0" width="90" height="16" />
+        <rect x="0" y="55" rx="0" ry="0" width="300" height="50" />
+        <rect x="0" y="131" rx="0" ry="0" width="450" height="18" />
+        <rect x="0" y="163" rx="0" ry="0" width="300" height="18" />
+      </ContentLoader>
+    )
+    videoPlayer = (
+      <ContentLoader
+        speed={0}
+        width={700}
+        height={60}
+        viewBox="0 0 700 60"
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="0" y="0" rx="28" ry="28" width="56" height="56" />
+        <rect x="80" y="17" rx="0" ry="0" width="100" height="20" />
+      </ContentLoader>
+    )
+    size = (
+      <ContentLoader
+        speed={0}
+        width={700}
+        height={220}
+        viewBox="0 0 700 220"
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="0" y="20" rx="0" ry="0" width="150" height="18" />
+        <rect x="0" y="70" rx="0" ry="0" width="48" height="48" />
+        <rect x="65" y="70" rx="0" ry="0" width="48" height="48" />
+        <rect x="130" y="70" rx="0" ry="0" width="48" height="48" />
+        <rect x="195" y="70" rx="0" ry="0" width="48" height="48" />
+        <rect x="0" y="134" rx="0" ry="0" width="48" height="48" />
+        <rect x="65" y="134" rx="0" ry="0" width="48" height="48" />
+        <rect x="130" y="134" rx="0" ry="0" width="48" height="48" />
+        <rect x="195" y="134" rx="0" ry="0" width="48" height="48" />
+      </ContentLoader>
+    )
+    
+  }
 
   return (
     <div className={classes.Wrapper}>
       <div className='container'>
         <div className={classes.Row}>
           <div className={classes.Left}>
-            <Image />
+            <Image name={props.productDetail?.name} />
           </div>
           <div className={classes.Right}>
-            <div className={classes.Category}>men shoe</div>
-            <div className={classes.Title}>nike air edge</div>
-            <div className={classes.Description}>The Nike Air Edge 270 takes the look of retro basketball and puts it through a modern lens.</div>
-            <VideoPlayer />
-            <Size />
-            <Color />
+            {details}
+            {videoPlayer}
+            {size}
+            {color}
           </div>
         </div>
         <div className={classes.BtnGroup}>
@@ -51,3 +160,19 @@ export default function Detail() {
     </div>
   )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    products: state.ProductReducer.products,
+    productDetail: state.ProductReducer.productDetail,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onInitProducts: () => dispatch(productAction.initProducts()),
+    onInitProductDetail: (slug) => dispatch(productAction.initProductDetail(slug))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Detail)
