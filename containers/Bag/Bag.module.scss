@@ -80,6 +80,13 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      .Delete {
+        width: 20px;
+        &:hover {
+          cursor: pointer;
+          opacity: 0.4;
+        }
+      }
     }
     table {
       thead {

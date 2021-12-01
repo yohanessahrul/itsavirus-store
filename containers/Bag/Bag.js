@@ -1,9 +1,91 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './Bag.module.scss'
 import Icon from '../../components/UI/Icon'
 import { shoes } from '../../content/shoes'
+import Cookies from 'universal-cookie'
+import { imageRender } from '../../helper/global'
+import Swal from 'sweetalert2'
+
+const cookies = new Cookies()
 
 export default function Bag() {
+  let carts = cookies.get('cart')
+  const [cartData, setCartData] = useState(null)
+
+  useEffect(() => {
+    setCartData(carts)
+  }, [])
+
+  const deleteItemFromCart = (index) => {
+    let newCart = null
+    const cartsCp = cartData
+    newCart = cartsCp.filter((item, key) => key !== index)
+    setCartData(newCart)
+    cookies.set('cart', newCart)
+  }
+
+  const confirmationDeleteHandler = (index) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: `Cancel`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteItemFromCart(index)
+        Swal.fire('Success Delete', '', 'success')
+      }
+    })
+  }
+
+  let rows = null
+  if (cartData) {
+    rows = cartData.map((item, key) => {
+      return (
+        <tr key={key}>
+          <td scope="col">
+            <div className={classes.Column}>
+              <div className={classes.Delete} onClick={() => confirmationDeleteHandler(key)}>
+                <Icon name="ico-close" widtd={20} fill="#000000" stroke="none" />
+              </div>
+            </div>
+          </td>
+          <td scope="col"><img src={imageRender(item?.name,'src')} alt="" /></td>
+          <td scope="col">
+            <div className={classes.DetailProduct}>
+              <div>
+                <div className={classes.Title}>{item?.name}</div>
+                <div className={classes.SizeAndColor}>
+                  <div className={classes.Size}>Size: {item?.size}</div>
+                  <div className={classes.Color}>
+                    <div>Color</div>
+                    <div style={{ background: item?.colorHash }} className={classes.ColorBox}>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div className={classes.Column}>
+              ${item?.price}
+            </div>
+          </td>
+          <td>
+            <div className={classes.Column}>
+              {item?.qty}
+            </div>
+          </td>
+          <td>
+            <div className={classes.Column}>
+              ${item?.price * item?.qty}
+            </div>
+          </td>
+        </tr>
+      )
+    })
+  }
+
   return (
     <div className={classes.Wrapper}>
       <div className='container'>
@@ -12,7 +94,7 @@ export default function Bag() {
             Your Bag
           </div>
           <div className={classes.Icon}>
-            <div className={classes.Badge}>2</div>
+            {carts ? <div className={classes.Badge}>{carts.length}</div> : null}
             <Icon name='ico-bag' width={35} stroke="none" />
           </div>
         </div>
@@ -29,82 +111,8 @@ export default function Bag() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td scope="col">
-                  <div className={classes.Column}>
-                    <Icon name="ico-close" widtd={20} fill="#000000" stroke="none" />
-                  </div>
-                </td>
-                <td scope="col"><img src={shoes[0].image} alt="" /></td>
-                <td scope="col">
-                  <div className={classes.DetailProduct}>
-                    <div>
-                      <div className={classes.Title}>nike air jordan</div>
-                      <div className={classes.SizeAndColor}>
-                        <div className={classes.Size}>Size: 8</div>
-                        <div className={classes.Color}>
-                          <div>Color</div>
-                          <div style={{ background: 'green' }} className={classes.ColorBox}>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className={classes.Column}>
-                    $67.99
-                  </div>
-                </td>
-                <td>
-                  <div className={classes.Column}>
-                    1
-                  </div>
-                </td>
-                <td>
-                  <div className={classes.Column}>
-                    $67.98
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td scope="col">
-                  <div className={classes.Column}>
-                    <Icon name="ico-close" widtd={20} fill="#000000" stroke="none" />
-                  </div>
-                </td>
-                <td scope="col"><img src={shoes[0].image} alt="" /></td>
-                <td scope="col">
-                  <div className={classes.DetailProduct}>
-                    <div>
-                      <div className={classes.Title}>nike air jordan</div>
-                      <div className={classes.SizeAndColor}>
-                        <div className={classes.Size}>Size: 8</div>
-                        <div className={classes.Color}>
-                          <div>Color</div>
-                          <div style={{ background: 'cyan' }} className={classes.ColorBox}>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className={classes.Column}>
-                    $67.99
-                  </div>
-                </td>
-                <td>
-                  <div className={classes.Column}>
-                    1
-                  </div>
-                </td>
-                <td>
-                  <div className={classes.Column}>
-                    $67.98
-                  </div>
-                </td>
-              </tr>
+              {rows}
+              
             </tbody>
           </table>
           <div className='row'>

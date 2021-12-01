@@ -9,6 +9,10 @@ import VideoPlayer from '../../components/Product/Detail/VideoPlayer/VideoPlayer
 import * as productAction from '../../redux/product/ProductAction'
 import { connect } from 'react-redux'
 import ContentLoader from 'react-content-loader'
+import Swal from 'sweetalert2'
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 function Detail(props) {
   const router = useRouter()
@@ -40,6 +44,63 @@ function Detail(props) {
   const setColorHandler = (name, hash) => {
     setActiveColor(name)
     setActiveHashColor(hash)
+  }
+
+  const addToCart = (item) => {
+    let carts = cookies.get('cart')
+    let payload = {
+      name: item?.name,
+      price: item?.price,
+      size: activeSize,
+      colorHash: activeHashColor,
+      colorName: activeColor,
+      qty: 1,
+    }
+
+    if (!carts) {
+      carts = []
+      carts.push(payload)
+      // cookies.set('cart', carts)
+    } else {
+      carts.push(payload)
+    }
+
+    cookies.set('cart', carts)
+
+    // cookies.set('cart', )
+
+    Swal.fire('Saved!', '', 'success')
+    router.push('/')
+  }
+
+  const nextStepHandler = (item) => {
+    Swal.fire({
+      title: 'Continue Payment?',
+      showDenyButton: true,
+      // showCancelButton: true,
+      // cancelButtonText: 'test',
+      confirmButtonText: 'Yes, Please',
+      denyButtonText: `Not yet`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        addToCart(item)
+        router.push('/bag')
+      } else if (result.isDenied) {
+        Swal.fire({
+          title: 'Add to cart?',
+          showDenyButton: true,
+          confirmButtonText: 'Yes',
+          denyButtonText: 'No',
+        }).then((res) => {
+          if (res.isConfirmed) {
+            addToCart(item)
+          } else if (res.isDenied) {
+
+          }
+        })
+      }
+    })
+
   }
 
   let image = null
@@ -145,7 +206,7 @@ function Detail(props) {
               </div>
             </div>
             <div className='col-md-3 d-grid gap-2'>
-              <div className={classes.Button} onClick={() => router.push('/bag')}>
+              <div className={classes.Button} onClick={() => nextStepHandler(props.productDetail)}>
                 <div className={classes.Label}>
                   add to bag - $95.97
                 </div>

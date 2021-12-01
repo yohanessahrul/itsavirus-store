@@ -2,8 +2,13 @@ import React from 'react'
 import Link from 'next/link'
 import Icon from '../../UI/Icon'
 import classes from './Menu.module.scss'
+import Cookies from 'universal-cookie'
+
+const cookies = new Cookies()
 
 export default function Menu() {
+  let carts = cookies.get('cart')
+
   return (
     <div className={classes.Wrapper}>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -43,7 +48,7 @@ export default function Menu() {
                 <li className="nav-item">
                   <a className="nav-link" href="/bag">
                     <div className={classes.Icon}>
-                      <div className={classes.Badge}>2</div>
+                      {carts ? <div className={classes.Badge}>{carts ? carts.length : ''}</div> : null}
                       <Icon name="ico-bag" width={24} fill="#000000" stroke="none" />
                     </div>
                   </a>
