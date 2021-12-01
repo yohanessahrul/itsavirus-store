@@ -13,7 +13,7 @@ function Menu(props) {
 
   useEffect(() => {
     props.onSetCartData(carts)
-  }, [])
+  }, [carts])
 
   return (
     <div className={classes.Wrapper}>
