@@ -1,0 +1,66 @@
+@import '../../../../styles/color.module.scss';
+
+.Size {
+  margin-top: 38px;
+  .Label {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    color: $c-black-1;
+    text-transform: uppercase;
+  }
+  ul {
+    padding: 0;
+    margin: 18px 0 0;
+    width: 340px;
+    // background: salmon;
+    li {
+      list-style: none;
+      width: 48px;
+      height: 48px;
+      float: left;
+      // background: green;
+      margin-right: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      color: $c-black-1;
+      border: 1px solid $c-grey-light;
+      box-sizing: border-box;
+      &.Active {
+        background: $c-black;
+        color: $c-white;
+        &:hover {
+          background: $c-black;
+          color: $c-white;
+        }
+      }
+      &:hover {
+        background: $c-white-dark-2;
+        cursor: pointer;
+      }
+    }
+    .Clear {
+      clear: both;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .Size {
+    ul {
+      width: 250px;
+      li {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

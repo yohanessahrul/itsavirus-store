@@ -1,0 +1,48 @@
+@import '../../../../styles/color.module.scss';
+
+.Color {
+  margin-top: 30px;
+  .Label {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    color: $c-black-1;
+    text-transform: uppercase;
+  }
+  ul {
+    padding: 0;
+    margin:20px 0 0;
+    li {
+      width: 48px;
+      height: 48px;
+      margin-right: 20px;
+      list-style: none;
+      float: left;
+      box-sizing: border-box;
+      border-radius: 24px;
+      &.Active {
+        border: 5px solid $c-black;
+      }
+      &:hover {
+        border: 2px solid $c-black-1;
+        cursor: pointer;
+      }
+    }
+      .Clear {
+        clear: both;
+      }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .Color {
+    ul {
+      li {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+      }
+    }
+  }
+}

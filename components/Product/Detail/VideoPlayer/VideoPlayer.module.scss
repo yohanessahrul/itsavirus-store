@@ -1,0 +1,38 @@
+@import '../../../../styles/color.module.scss';
+
+.Player {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  .PlayBtn {
+    width: 56px;
+    height: 56px;
+    background: rgba(19, 18, 18, 0.05);
+    border-radius: 28px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5px;
+    &:hover {
+      cursor: pointer;
+      background: $c-white-dark-2;
+    }
+  }
+  .Label {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: $c-black-1;
+    text-transform: uppercase;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}

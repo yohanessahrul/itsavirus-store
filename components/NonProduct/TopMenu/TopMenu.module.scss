@@ -1,0 +1,79 @@
+@import '../../../styles/color.module.scss';
+
+.Wrapper {
+  background: $c-white-dark-1;
+  padding: 8px 0 5px;
+  .Left {
+    display: flex;
+    align-items: center;
+    .Icon {
+      margin-left: 3px;
+    }
+    .Label {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      text-transform: capitalize;
+      color: $c-black;
+    }
+  }
+  .Middle {
+    display: flex;
+    align-items: center;
+    .FreeShippingNotes {
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 18px;
+      text-transform: uppercase;
+      color: $c-black;
+      display: flex;
+    }
+  }
+  .Right {
+    display: flex;
+    justify-content: flex-end;
+    ul {
+      display: flex;
+      padding: 0;
+      margin: 0;
+      li {
+        list-style: none;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        // line-height: 18px;
+        text-align: center;
+        color: $c-black;
+        margin-left: 25px;
+        text-transform: capitalize;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 1200px) {
+  .containers {
+    width: 960px;
+    background: gray;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .Wrapper {
+    .Left {
+      display: none;
+    }
+    .Right {
+      display: none;
+    }
+    
+  }
+}
+
+// @media screen and (max-width: 1400px) {}
+// @media screen and (max-width: 1200px) {}
+// @media screen and (max-width: 992px) {}
+// @media screen and (max-width: 767px) {}
+// @media screen and (max-width: 576px) {}
+// @media screen and (max-width: 525px) {}

@@ -1,0 +1,230 @@
+@import '../../styles/color.module.scss';
+
+.Wrapper {
+  .Heading {
+    display: flex;
+    justify-content: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: $c-black-1;
+    margin-top: 12px;
+    .Label {
+      margin-right: 24px;
+    }
+    .Icon {
+      position: relative;
+      .Badge {
+        position: absolute;
+        right: 0;
+        top: -5px;
+        width: 16px;
+        height: 16px;
+        border-radius: 8px;
+        background: red;
+        color: white;
+        font-size: 12px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+  .Table {
+    margin-top: 93px;
+    width: 100%;
+
+    .DetailProduct {
+      height: 150px !important;
+      display: flex;
+      flex-direction: column;
+      // background: teal;
+      justify-content: center;
+      // margin-top: 10px;
+      .Title {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        text-transform: uppercase;
+        color: $c-black-1;
+        margin-bottom: 12px;
+      }
+      .SizeAndColor {
+        // background: yellow;
+        display: flex;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        color: rgba(0, 0, 0, 0.8);
+        .Size {
+          margin-right: 20px;
+        }
+        .Color {
+          display: flex;
+          align-items: center;
+          .ColorBox {
+            margin-left: 10px;
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+    }
+    .Column {
+      // background: red;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    table {
+      thead {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 18px;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.6);
+        background: $c-white-dark;
+      }
+      tbody {
+        tr {
+          td {
+            padding-top: 10px;
+            img {
+              width: 150px !important;
+              height: 150px;
+              // margin-top: 10px;
+            }
+          }
+        }
+      }
+    }
+    .Total {
+      background: $c-white-dark-4;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.6);
+      margin-bottom: 20px;
+    }
+    .Button {
+      background: black;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 24px;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center !important;
+      .Icon {
+        // padding-top: 10px;
+        // margin: 0;
+        // display: flex;
+        // align-items: center;
+        // background: red;
+        // padding-top: 10px;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  
+}
+
+
+@media screen and (max-width: 1400px) { }
+@media screen and (max-width: 1200px) { }
+@media screen and (max-width: 992px) {
+  .Wrapper {
+    .Table {
+      .Column {
+        min-height: 100px;
+      }
+      .DetailProduct {
+        height: 100px !important;
+      }
+      table {
+        tbody {
+          tr {
+            td {
+              img {
+                width: 100px !important;
+                height: 100px !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  .Wrapper {
+    .Table {
+      .Column {
+        min-height: 80px;
+      }
+      .DetailProduct {
+        height: 80px !important;
+      }
+      table {
+        tbody {
+          tr {
+            td {
+              img {
+                width: 80px !important;
+                height: 80px !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .Wrapper {
+    .Table {
+      .Column {
+        min-height: 50px;
+      }
+      .DetailProduct {
+        height: 50px !important;
+        .Title {
+          line-height: 14px;
+          margin-bottom: 3px;
+        }
+        .SizeAndColor {
+          .Size {
+            margin-right: 6px;
+          }
+        }
+      }
+      table {
+        tbody {
+          tr {
+            td {
+              img {
+                width: 50px !important;
+                height: 50px !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

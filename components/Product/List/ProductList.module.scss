@@ -1,0 +1,45 @@
+.Wrapper {
+    margin-top: 93px;
+    margin-left: -20px;
+}
+
+@media screen and (max-width: 1400px) {
+  .Wrapper {
+    width: 100% !important;
+    margin-left: 5px !important;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .Wrapper {
+    width: 100% !important;
+    margin-left: 5px !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .Wrapper {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .Wrapper {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .Wrapper {
+    width: 100%;
+    margin-left: 15px !important;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .Wrapper {
+    width: 100%;
+  }
+}

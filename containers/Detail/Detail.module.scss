@@ -1,0 +1,173 @@
+@import '../../styles/color.module.scss';
+
+.Wrapper {
+  .Row {
+    display: flex;
+    justify-content: space-between;
+    .Left {
+      width: 515px;
+    }
+    .Right {
+      width: calc(100% - (515px + 96px));
+      // background: salmon;
+      .Category {
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        text-transform: uppercase;
+        color: $c-black-1;
+        margin-top: 35px;
+      }
+      .Title {
+        font-weight: bold;
+        font-size: 50px;
+        text-transform: uppercase;
+        color: #131212;
+      }
+      .Description {
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 30px;
+        color: rgba(0, 0, 0, 0.7);
+        margin-top: 11px;
+      }
+    }
+  }
+  .BtnGroup {
+    width: 100%;
+    background: $c-white-dark-4;
+    margin-top: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 200px;
+    display: flex;
+    flex-direction: column;
+    align-content: center !important;
+    // .Btn {
+    //   display: flex;
+    // }
+    .FreeShippingNotes {
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 18px;
+      text-transform: uppercase;
+      color: $c-black;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+    .Button {
+      background: black;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 24px;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center !important;
+      .Icon {
+        // padding-top: 10px;
+        // margin: 0;
+        // display: flex;
+        // align-items: center;
+        // background: red;
+        // padding-top: 10px;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .Wrapper {
+    .Row {
+      .Left {
+        width: 500px;
+        height: 700px;
+        // background: yellow;
+      }
+      .Right {
+        width: calc(100% - (500px - 50px));
+        margin-left: 50px;
+        .Title {
+          margin-top: 20px;
+          line-height: 60px;
+        }
+        .Description {
+          line-height: 30px;
+          margin-top: 20px;
+        }
+
+      }
+    }
+  }
+}
+@media screen and (max-width: 992px) {
+  .Wrapper {
+    .Row {
+      .Left {
+        // background: green;
+        height: 600px;
+        width: 350px;
+      }
+      .Right {
+        width: calc(100% - (350px + 40px));
+        margin-left: 40px;
+        .Title {
+          margin-top: 20px;
+          line-height: 50px;
+        }
+        .Description {
+          line-height: 25px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  .Wrapper {
+    width: 100% !important;
+    .Row {
+      display: block;
+      width: 100% !important;
+      .Left {
+        width: 100% !important;
+        // background: blue;
+      }
+      .Right {
+        width: 100% !important;
+        display: block !important;
+        margin-left: 0;
+      }
+    }
+  }
+}
+@media screen and (max-width: 576px) {
+  .Wrapper {
+    .Row {
+      .Left {
+        // background: orange;
+      }
+      .Right {
+
+      }
+    }
+  }
+}
+@media screen and (max-width: 525px) {
+  .Wrapper {
+    .Row {
+      .Left {
+        // background: cyan;
+      }
+      .Right {
+
+      }
+    }
+  }
+}
