@@ -42,7 +42,7 @@ function Bag(props) {
   }
 
   let rows = null
-  if (cartData) {
+  if (cartData && cartData.length > 0) {
     rows = cartData.map((item, key) => {
       return (
         <tr key={key}>
@@ -87,6 +87,12 @@ function Bag(props) {
         </tr>
       )
     })
+  } else {
+    rows = (
+      <tr>
+        <td colSpan={6}>Ops, you haven't selected an item</td>
+      </tr>
+    )
   }
 
   return (
@@ -115,7 +121,6 @@ function Bag(props) {
             </thead>
             <tbody>
               {rows}
-              
             </tbody>
           </table>
           <div className='row'>

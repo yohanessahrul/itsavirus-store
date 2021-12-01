@@ -20,12 +20,13 @@ export const convertNameToBeSlug = (name) => {
 }
 
 export const grandTotal = (data) => {
+  let result = 0
   if (data) {
-    let result = 0
     data.forEach(element => {
       result += (element.price * element.qty)
     })
     
     return result
   }
+  return result
 }

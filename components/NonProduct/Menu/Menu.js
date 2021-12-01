@@ -11,6 +11,10 @@ const cookies = new Cookies()
 function Menu(props) {
   let carts = cookies.get('cart')
 
+  useEffect(() => {
+    props.onSetCartData(carts)
+  }, [])
+
   return (
     <div className={classes.Wrapper}>
       <nav className="navbar navbar-expand-lg navbar-light">
