@@ -19,7 +19,7 @@ function Menu(props) {
     <div className={classes.Wrapper}>
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container">
-          <Link href="/">
+          <Link href="/" passHref>
             <div className="navbar-brand">
               <Icon name="ico-nike" viewBox="0 0 58 21" width={56} fill="#000000" stroke="none" />
             </div>
@@ -30,14 +30,14 @@ function Menu(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto">
               <li className="nav-item pe-3">
-                <Link href="/#">
+                <Link href="/#" passHref>
                   <div className="nav-link active">
                     New Release
                   </div>
                 </Link>
               </li>
               <li className="nav-item pe-3">
-                <Link href="/#">
+                <Link href="/#" passHref>
                   <div className="nav-link">
                     Men
                   </div>
