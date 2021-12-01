@@ -1,9 +1,8 @@
 import React from 'react'
 import classes from './ProductItem.module.scss'
-import { shoes } from '../../../../content/shoes'
-import { useRouter } from 'next/router'
 import { convertNameToBeSlug, imageRender } from '../../../../helper/global'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function ProductItem(props) {
   return (
@@ -12,9 +11,11 @@ export default function ProductItem(props) {
         <div className={classes.Image}>
           <Link href={`/product/${convertNameToBeSlug(props.item.name)}`}>
             <a>
-              <img
+              <Image
                 src={imageRender(props.item?.name, 'src')}
-                alt={imageRender(props.item?.name, 'alt')} />
+                alt={imageRender(props.item?.name, 'alt')}
+                width={500}
+                height={500}/>
             </a>
           </Link>
         </div>

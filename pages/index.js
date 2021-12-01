@@ -1,6 +1,5 @@
 import React from "react"
 import Layout from "../layout/Layout"
-import { imageRender } from "../helper/global"
 import Content from "../layout/Content/Content"
 import Home from '../containers/Home/Home'
 
@@ -16,7 +15,6 @@ export default function HomePage() {
         <Content>
           <Home />
         </Content>
-        {/* <img src={imageRender('Jordan Delta', 'src')} alt={imageRender('Jordan Delta', 'alt')} /> */}
       </Layout>
     </React.Fragment>
   )

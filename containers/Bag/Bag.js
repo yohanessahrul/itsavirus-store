@@ -6,6 +6,7 @@ import { grandTotal, imageRender } from '../../helper/global'
 import Swal from 'sweetalert2'
 import { connect } from 'react-redux'
 import * as productAction from '../../redux/product/ProductAction'
+import Image from 'next/image'
 
 const cookies = new Cookies()
 
@@ -53,7 +54,13 @@ function Bag(props) {
               </div>
             </div>
           </td>
-          <td scope="col"><img src={imageRender(item?.name,'src')} alt="" /></td>
+          <td scope="col">
+            <Image
+              src={imageRender(item?.name, 'src')}
+              alt={item?.name}
+              width={500}
+              height={500}/>
+          </td>
           <td scope="col">
             <div className={classes.DetailProduct}>
               <div>
