@@ -22,7 +22,7 @@ export default function VideoPlayer(props) {
         </div>
         <div className={classes.Label} type="button" data-bs-toggle="modal" data-bs-target="#videoPlayerModal">play video</div>
       </div>
-      <div className="modal fade" id="videoPlayerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade" id="videoPlayerModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-md">
           <div className="modal-content">
             <div className="modal-body">
