@@ -11,10 +11,10 @@ const cookies = new Cookies()
 function Menu(props) {
   // let carts = cookies.get('cart')
 
-  useEffect(() => {
-    let carts = cookies.get('cart')
-    props.onSetCartData(carts)
-  }, [])
+  // useEffect(() => {
+  //   let carts = cookies.get('cart')
+  //   props.onSetCartData(carts)
+  // }, [])
 
   return (
     <div className={classes.Wrapper}>
