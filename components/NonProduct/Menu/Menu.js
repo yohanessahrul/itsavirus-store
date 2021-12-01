@@ -9,11 +9,12 @@ import * as productAction from '../../../redux/product/ProductAction'
 const cookies = new Cookies()
 
 function Menu(props) {
-  let carts = cookies.get('cart')
+  // let carts = cookies.get('cart')
 
   useEffect(() => {
+    let carts = cookies.get('cart')
     props.onSetCartData(carts)
-  }, [carts])
+  }, [])
 
   return (
     <div className={classes.Wrapper}>
