@@ -33,3 +33,10 @@ export const initProducts = () => {
       .catch((err) => dispatch(setErrorFetchProducts()))
   }
 }
+
+export const setCartsData = (data) => {
+  return {
+    type: 'SET_CARTS_DATA',
+    data: data
+  }
+}

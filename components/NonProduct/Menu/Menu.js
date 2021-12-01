@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Icon from '../../UI/Icon'
 import classes from './Menu.module.scss'
 import Cookies from 'universal-cookie'
+import { connect } from 'react-redux'
+import * as productAction from '../../../redux/product/ProductAction'
 
 const cookies = new Cookies()
 
-export default function Menu() {
+function Menu(props) {
   let carts = cookies.get('cart')
 
   return (
@@ -48,7 +50,7 @@ export default function Menu() {
                 <li className="nav-item">
                   <a className="nav-link" href="/bag">
                     <div className={classes.Icon}>
-                      {carts ? <div className={classes.Badge}>{carts ? carts.length : ''}</div> : null}
+                      {props.cartRedux ? <div className={classes.Badge}>{props.cartRedux ? props.cartRedux.length : ''}</div> : null}
                       <Icon name="ico-bag" width={24} fill="#000000" stroke="none" />
                     </div>
                   </a>
@@ -80,3 +82,18 @@ export default function Menu() {
     </div>
   )
 }
+
+
+const mapStateToProps = (state) => {
+  return {
+    cartRedux: state.ProductReducer.carts,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSetCartData: (data) => dispatch(productAction.setCartsData(data))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu)

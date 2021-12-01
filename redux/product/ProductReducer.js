@@ -5,7 +5,8 @@ const initialState = {
   products: [],
   isFetchProducts: false,
   isErrorFetchProducts: false,
-  productDetail: null
+  productDetail: null,
+  carts: [],
 }
 
 const setProducts = (state, action) => {
@@ -38,6 +39,11 @@ const setProductDetail = (state, action) => {
     return state
   }
 }
+const setCarts = (state, action) => {
+  return updateObject(state, {
+    carts: action.data
+  })
+}
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -45,6 +51,7 @@ const reducer = (state = initialState, action) => {
     case 'SET_FETCH_PRODUCTS': return setFetchProducts(state)
     case 'SET_ERROR_FETCH_PRODUCTS': return setErrorFetchProducts(state)
     case 'SET_PRODUCT_DETAIL': return setProductDetail(state, action)
+    case 'SET_CARTS_DATA': return setCarts(state, action)
     default: return state
   }
 }

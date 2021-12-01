@@ -18,3 +18,14 @@ export const convertNameToBeSlug = (name) => {
   let slug = name.split(' ').join('-')
   return slug.toLowerCase()
 }
+
+export const grandTotal = (data) => {
+  if (data) {
+    let result = 0
+    data.forEach(element => {
+      result += (element.price * element.qty)
+    })
+    
+    return result
+  }
+}

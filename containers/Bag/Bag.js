@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import classes from './Bag.module.scss'
 import Icon from '../../components/UI/Icon'
-import { shoes } from '../../content/shoes'
 import Cookies from 'universal-cookie'
-import { imageRender } from '../../helper/global'
+import { grandTotal, imageRender } from '../../helper/global'
 import Swal from 'sweetalert2'
+import { connect } from 'react-redux'
+import * as productAction from '../../redux/product/ProductAction'
 
 const cookies = new Cookies()
 
-export default function Bag() {
+function Bag(props) {
   let carts = cookies.get('cart')
   const [cartData, setCartData] = useState(null)
 
@@ -22,6 +23,8 @@ export default function Bag() {
     newCart = cartsCp.filter((item, key) => key !== index)
     setCartData(newCart)
     cookies.set('cart', newCart)
+    props.onSetCartData(newCart)
+
   }
 
   const confirmationDeleteHandler = (index) => {
@@ -94,7 +97,7 @@ export default function Bag() {
             Your Bag
           </div>
           <div className={classes.Icon}>
-            {carts ? <div className={classes.Badge}>{carts.length}</div> : null}
+            {props.cartRedux ? <div className={classes.Badge}>{props.cartRedux.length}</div> : null}
             <Icon name='ico-bag' width={35} stroke="none" />
           </div>
         </div>
@@ -120,7 +123,7 @@ export default function Bag() {
             <div className='col-md-4'>
               <div className={classes.Total}>
                 <div>total</div>
-                <div>$67.89</div>
+                <div>${grandTotal(cartData)}</div>
               </div>
               <div className={classes.Button} onClick={() => router.push('/bag')}>
                 <div className={classes.Label}>
@@ -137,3 +140,18 @@ export default function Bag() {
     </div>
   )
 }
+
+
+const mapStateToProps = (state) => {
+  return {
+    cartRedux: state.ProductReducer.carts,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSetCartData: (data) => dispatch(productAction.setCartsData(data))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Bag)

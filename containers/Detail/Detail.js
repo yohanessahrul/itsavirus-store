@@ -17,7 +17,6 @@ const cookies = new Cookies();
 function Detail(props) {
   const router = useRouter()
   const slug = router.query.slug
-  const [activeVideoUrl, setActiveVideoUrl] = useState(null)
   const [activeSize, setActiveSize] = useState(null)
   const [activeColor, setActiveColor] = useState(null)
   const [activeHashColor, setActiveHashColor] = useState(null)
@@ -66,8 +65,7 @@ function Detail(props) {
     }
 
     cookies.set('cart', carts)
-
-    // cookies.set('cart', )
+    props.onSetCartData(carts)
 
     Swal.fire('Saved!', '', 'success')
     router.push('/')
@@ -232,7 +230,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onInitProducts: () => dispatch(productAction.initProducts()),
-    onInitProductDetail: (slug) => dispatch(productAction.initProductDetail(slug))
+    onInitProductDetail: (slug) => dispatch(productAction.initProductDetail(slug)),
+    onSetCartData: (data) => dispatch(productAction.setCartsData(data))
   }
 }
 
