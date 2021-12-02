@@ -57,12 +57,14 @@ function Menu(props) {
             <div className="float-lg-end">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 mb-4 ms-lg-5 py-2">
                 <li className="nav-item">
-                  <div className="nav-link" href="/bag">
-                    <div className={classes.Icon}>
-                      {props.cartRedux ? <div className={classes.Badge}>{props.cartRedux ? props.cartRedux.length : ''}</div> : null}
-                      <Icon name="ico-bag" width={24} fill="#000000" stroke="none" />
+                  <Link href="/bag" passHref>
+                    <div className="nav-link">
+                      <div className={classes.Icon}>
+                        {props.cartRedux ? <div className={classes.Badge}>{props.cartRedux ? props.cartRedux.length : ''}</div> : null}
+                        <Icon name="ico-bag" width={24} fill="#000000" stroke="none" />
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </li>
                 <li className="nav-item">
                   <div className="nav-link" href="/#">

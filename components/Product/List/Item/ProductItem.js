@@ -15,7 +15,8 @@ export default function ProductItem(props) {
                 src={imageRender(props.item?.name, 'src')}
                 alt={imageRender(props.item?.name, 'alt')}
                 width={500}
-                height={500}/>
+                height={500}
+                />
             </a>
           </Link>
         </div>

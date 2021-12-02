@@ -59,7 +59,8 @@ function Bag(props) {
               src={imageRender(item?.name, 'src')}
               alt={item?.name}
               width={500}
-              height={500}/>
+              height={500}
+              />
           </td>
           <td scope="col">
             <div className={classes.DetailProduct}>

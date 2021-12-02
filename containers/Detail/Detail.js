@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import classes from './Detail.module.scss'
 import { useRouter } from 'next/router'
 import Icon from '../../components/UI/Icon'
-import Image from '../../components/Product/Detail/Image/Image'
+import ImagesProduct from '../../components/Product/Detail/Image/Image'
 import Size from '../../components/Product/Detail/Size/Size'
 import Color from '../../components/Product/Detail/Color/Color'
 import VideoPlayer from '../../components/Product/Detail/VideoPlayer/VideoPlayer'
@@ -101,13 +101,13 @@ function Detail(props) {
 
   }
 
-  let image = null
+  // let image = null
   let details = null
   let videoPlayer = null
   let size = null
   let color = null
   if (props.productDetail) {
-    image = <Image name={props.productDetail?.name} />
+    // image = <Image name={props.productDetail?.name} />
     details = (
       <React.Fragment>
         <div className={classes.Category}>{props?.productDetail?.category}</div>
@@ -185,7 +185,7 @@ function Detail(props) {
       <div className='container'>
         <div className={classes.Row}>
           <div className={classes.Left}>
-            <Image name={props.productDetail?.name} />
+            <ImagesProduct name={props.productDetail?.name} />
           </div>
           <div className={classes.Right}>
             {details}

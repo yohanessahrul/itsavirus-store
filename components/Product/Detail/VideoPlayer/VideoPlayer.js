@@ -6,7 +6,7 @@ import ReactPlayer from 'react-player'
 export default function VideoPlayer(props) {
   const playerRef = useRef(null)
   const [pip, setPip] = useState(true)
-  const [playing, setPlaying] = useState(true)
+  const [playing, setPlaying] = useState(false)
   const [controls, setControls] = useState(true)
   const [light, setLight] = useState(false)
   const [volume, setVolume] = useState(0.8)
