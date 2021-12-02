@@ -45,13 +45,19 @@ function Menu(props) {
                 </Link>
               </li>
               <li className="nav-item pe-3">
-                <div className="nav-link" href="/#">Women</div>
+                <Link href="/#" passHref>
+                  <div className="nav-link">Women</div>
+                </Link>
               </li>
               <li className="nav-item  pe-3">
-                <div className="nav-link" href="/#">Kids</div>
+                <Link href="/#" passHref>
+                  <div className="nav-link">Kids</div>
+                </Link>
               </li>
               <li className="nav-item  pe-3">
-                <div className="nav-link" href="/#">Customize</div>
+                <Link href="/#" passHref>
+                  <div className="nav-link">Customize</div>
+                </Link>
               </li>
             </ul>
             <div className="float-lg-end">
@@ -67,22 +73,30 @@ function Menu(props) {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <div className="nav-link" href="/#">
-                    <div className={classes.Icon}>
-                      <Icon name="ico-user-circle" width={30} fill="#000000" stroke="none" />
+                  <Link href="/#" passHref>
+                    <div className="nav-link">
+                      <div className={classes.Icon}>
+                        <Icon name="ico-user-circle" width={30} fill="#000000" stroke="none" />
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </li>
               </ul>
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 mb-4 ms-lg-5 py-2 d-block d-sm-block d-md-none">
                 <li className="nav-item pe-3">
-                  <div className="nav-link" href="/#">Shopping</div>
+                  <Link href="/#" passHref>
+                    <div className="nav-link" href="/#">Shopping</div>
+                  </Link>
                 </li>
                 <li className="nav-item  pe-3">
-                  <div className="nav-link" href="/#">FAQ</div>
+                  <Link href="/#" passHref>
+                    <div className="nav-link" href="/#">FAQ</div>
+                  </Link>
                 </li>
                 <li className="nav-item  pe-3">
-                  <div className="nav-link" href="/#">Contact</div>
+                  <Link href="/#" passHref>
+                    <div className="nav-link" href="/#">Contact</div>
+                  </Link>
                 </li>
               </ul>
 

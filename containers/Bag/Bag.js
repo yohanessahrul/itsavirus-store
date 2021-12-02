@@ -58,8 +58,8 @@ function Bag(props) {
             <Image
               src={imageRender(item?.name, 'src')}
               alt={item?.name}
-              width={500}
-              height={500}
+              width={150}
+              height={150}
               />
           </td>
           <td scope="col">
@@ -120,7 +120,7 @@ function Bag(props) {
             <thead>
               <tr>
                 <th style={{width: '5%'}}></th>
-                <th style={{width: '5%'}}></th>
+                <th style={{width: '20%'}}></th>
                 <th style={{width: '40%'}}>product</th>
                 <th style={{width: '15%'}}>price</th>
                 <th style={{width: '15%'}}>quantity</th>
